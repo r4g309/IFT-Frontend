@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { AppPermission } from '@/types/permissions'
+import DetailDatabase from '@/views/DetailDatabase.vue'
 
 const routes = [
   {
@@ -18,8 +20,17 @@ const routes = [
     path: '/',
     name: 'dashboard',
     component: () => import('@/views/DashboardView.vue'),
-    meta: { requiresAuth: true },
+    meta: {
+      requiresAuth: true,
+      //permission:[AppPermission.ADMIN_ALL]
+    },
   },
+  {
+    path: '/databases/:id',
+    name: 'databaseDetail',
+    props:true,
+    component: DetailDatabase
+  }
   // {
   //   path: '/databases',
   //   name: 'Databases',
@@ -39,25 +50,24 @@ const router = createRouter({
 // Navigation Guard
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
+  const requiresAuth = to.meta?.requiresAuth
+  const permissions = to.meta?.permission as AppPermission[] | undefined
 
-  // Si la ruta requiere autenticación
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next('/login')
-    return
+  if (!requiresAuth) {
+    return next()
   }
 
-  // Si ya está autenticado y va a login, redirigir al dashboard
-  if (to.path === '/login' && authStore.isAuthenticated) {
-    next('/')
-    return
+  if (!authStore.isAuthenticated) {
+    return next('/login')
   }
 
-  // Verificar permisos específicos
-  if (to.meta.permission && !authStore.hasPermission(to.meta.permission as string)) {
-    // Puedes redirigir a una página de "sin permisos" o al dashboard
-    alert('No tienes permisos para acceder a esta página')
-    next('/')
-    return
+  if (to.path === '/login') {
+    return next('/')
+  }
+
+  if (permissions && !authStore.hasAnyPermission(...permissions)) {
+    console.warn(`Acceso denegado: faltan permisos (${permissions.join(', ')})`)
+    return next('/')
   }
 
   next()
