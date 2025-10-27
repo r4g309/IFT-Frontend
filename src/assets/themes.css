@@ -1,0 +1,225 @@
+/* ============================================
+   PALETAS DE COLORES CEL-SHADING
+
+   NUEVO SISTEMA: Cada paleta tiene su propia clase
+   Se aplican dinámicamente al <html>
+   ============================================ */
+
+/* ============================================
+   OPCIÓN 1: AZUL CORPORATIVO SUTIL ⭐ (DEFAULT)
+   Profesional, serio, no cansa la vista
+   ============================================ */
+
+:root,
+html[data-color-theme='blue-corporate'] {
+  /* MODO OSCURO */
+  --color-primary: #1d4ed8;
+  --color-secondary: #0284c7;
+  --color-tertiary: #0369a1;
+
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+
+  --border-color: #475569;
+  --shadow-color: #020617;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+
+html[data-color-theme='blue-corporate'][data-theme='light'] {
+  /* MODO CLARO */
+  --color-primary: #1e40af;
+  --color-secondary: #0284c7;
+  --color-tertiary: #0369a1;
+
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+
+  --border-color: #cbd5e1;
+  --shadow-color: #1e293b;
+
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #2563eb;
+}
+
+/* ============================================
+   OPCIÓN 2: SLATE PROFESIONAL
+   Muy elegante, ideal para dashboards corporativos
+   ============================================ */
+
+html[data-color-theme='slate-professional'] {
+  /* MODO OSCURO */
+  --color-primary: #3b82f6;
+  --color-secondary: #06b6d4;
+  --color-tertiary: #0891b2;
+
+  --bg-primary: #0f1419;
+  --bg-secondary: #1c2128;
+  --bg-tertiary: #2d333b;
+
+  --text-primary: #eceff4;
+  --text-secondary: #b3b9c5;
+  --text-tertiary: #8b92a0;
+
+  --border-color: #444c56;
+  --shadow-color: #010409;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+}
+
+html[data-color-theme='slate-professional'][data-theme='light'] {
+  /* MODO CLARO */
+  --color-primary: #2563eb;
+  --color-secondary: #0891b2;
+  --color-tertiary: #0369a1;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #eaeef2;
+
+  --text-primary: #1c2128;
+  --text-secondary: #57606a;
+  --text-tertiary: #6e7781;
+
+  --border-color: #d0d7de;
+  --shadow-color: #2d333b;
+
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #3b82f6;
+}
+
+/* ============================================
+   OPCIÓN 3: PÚRPURA TECH
+   Moderno, tech, perfecto para SaaS
+   ============================================ */
+
+html[data-color-theme='purple-tech'] {
+  /* MODO OSCURO */
+  --color-primary: #7c3aed;
+  --color-secondary: #a78bfa;
+  --color-tertiary: #8b5cf6;
+
+  --bg-primary: #0f0a1e;
+  --bg-secondary: #1a1333;
+  --bg-tertiary: #2d2548;
+
+  --text-primary: #f5f3ff;
+  --text-secondary: #ddd6fe;
+  --text-tertiary: #c4b5fd;
+
+  --border-color: #4c3b6e;
+  --shadow-color: #050214;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #f43f5e;
+  --info: #a78bfa;
+}
+
+html[data-color-theme='purple-tech'][data-theme='light'] {
+  /* MODO CLARO */
+  --color-primary: #7c3aed;
+  --color-secondary: #8b5cf6;
+  --color-tertiary: #6d28d9;
+
+  --bg-primary: #fafafa;
+  --bg-secondary: #f5f3ff;
+  --bg-tertiary: #ede9fe;
+
+  --text-primary: #1f1729;
+  --text-secondary: #4c1d95;
+  --text-tertiary: #6b21a8;
+
+  --border-color: #c4b5fd;
+  --shadow-color: #2d1b69;
+
+  --success: #059669;
+  --warning: #d97706;
+  --error: #e11d48;
+  --info: #7c3aed;
+}
+
+/* ============================================
+   OPCIÓN 4: VERDE CORPORATIVO
+   Fresco, confiable, alternativa diferente
+   ============================================ */
+
+html[data-color-theme='green-corporate'] {
+  /* MODO OSCURO */
+  --color-primary: #059669;
+  --color-secondary: #14b8a6;
+  --color-tertiary: #0d9488;
+
+  --bg-primary: #0a1612;
+  --bg-secondary: #132621;
+  --bg-tertiary: #1f3a31;
+
+  --text-primary: #f0fdf4;
+  --text-secondary: #d1fae5;
+  --text-tertiary: #a7f3d0;
+
+  --border-color: #2d5548;
+  --shadow-color: #020807;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #14b8a6;
+}
+
+html[data-color-theme='green-corporate'][data-theme='light'] {
+  /* MODO CLARO */
+  --color-primary: #047857;
+  --color-secondary: #0d9488;
+  --color-tertiary: #0f766e;
+
+  --bg-primary: #fefffe;
+  --bg-secondary: #f0fdf4;
+  --bg-tertiary: #dcfce7;
+
+  --text-primary: #0f2419;
+  --text-secondary: #14532d;
+  --text-tertiary: #166534;
+
+  --border-color: #bbf7d0;
+  --shadow-color: #1f3a31;
+
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #0891b2;
+}
+
+/* ============================================
+   GRADIENTES CEL-SHADING
+   ============================================ */
+
+:root {
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    var(--color-tertiary) 100%
+  );
+  --gradient-dark: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}

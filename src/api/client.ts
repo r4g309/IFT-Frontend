@@ -28,7 +28,10 @@ apiClient.interceptors.request.use(
 
 // Response interceptor - Handle errors globally
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log(response)
+    return response
+  },
   (error: AxiosError) => {
     if (error.response) {
       const status = error.response.status

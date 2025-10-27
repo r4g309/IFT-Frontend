@@ -47,22 +47,23 @@ const router = createRouter({
   routes,
 })
 
-// Navigation Guard
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
   const requiresAuth = to.meta?.requiresAuth
   const permissions = to.meta?.permission as AppPermission[] | undefined
+
+  if (to.path === '/login' && authStore.isAuthenticated) {
+    console.log('Usuario autenticado intentando ir a /login → redirigiendo a /')
+    return next('/')
+  }
 
   if (!requiresAuth) {
     return next()
   }
 
   if (!authStore.isAuthenticated) {
+    console.log('Ruta protegida y usuario no autenticado → redirigiendo a /login')
     return next('/login')
-  }
-
-  if (to.path === '/login') {
-    return next('/')
   }
 
   if (permissions && !authStore.hasAnyPermission(...permissions)) {
