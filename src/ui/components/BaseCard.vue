@@ -22,21 +22,21 @@ import { computed } from 'vue'
 const props = defineProps({
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   variant: {
     type: String,
     default: 'default',
-    validator: (value) => ['default', 'elevated', 'flat'].includes(value)
+    validator: (value) => ['default', 'elevated', 'flat'].includes(value),
   },
   hoverable: {
     type: Boolean,
-    default: false
+    default: false,
   },
   clickable: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const emit = defineEmits(['click'])
@@ -47,8 +47,8 @@ const cardClasses = computed(() => {
     `card-${props.variant}`,
     {
       'card-hoverable': props.hoverable,
-      'card-clickable': props.clickable
-    }
+      'card-clickable': props.clickable,
+    },
   ]
 })
 
@@ -122,7 +122,6 @@ const handleClick = (event) => {
 }
 
 @media (max-width: 768px) {
-
   .card-header,
   .card-footer {
     padding: var(--space-3) var(--space-4);
