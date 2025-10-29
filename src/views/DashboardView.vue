@@ -222,7 +222,7 @@ const fetchDatabases = async () => {
 
 // Badge variant según el tipo
 const getDatabaseTypeBadge = (type: string) => {
-  const badges = {
+  const badges: Record<string, string> = {
     Oracle: 'error',
     PostgreSQL: 'primary',
     MySQL: 'secondary',

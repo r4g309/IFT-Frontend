@@ -27,7 +27,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'default',
-    validator: (value) => ['default', 'elevated', 'flat'].includes(value),
+    validator: (value:string) => ['default', 'elevated', 'flat'].includes(value),
   },
   hoverable: {
     type: Boolean,
@@ -52,7 +52,7 @@ const cardClasses = computed(() => {
   ]
 })
 
-const handleClick = (event) => {
+const handleClick = (event:PointerEvent) => {
   if (props.clickable) {
     emit('click', event)
   }

@@ -11,13 +11,13 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'default',
-    validator: (value) =>
+    validator: (value:string) =>
       ['default', 'primary', 'secondary', 'success', 'warning', 'error', 'info'].includes(value),
   },
   size: {
     type: String,
     default: 'md',
-    validator: (value) => ['sm', 'md', 'lg'].includes(value),
+    validator: (value:string) => ['sm', 'md', 'lg'].includes(value),
   },
   outlined: {
     type: Boolean,

@@ -83,16 +83,18 @@ const inputClasses = computed(() => {
   ]
 })
 
-const handleInput = (event) => {
-  emit('update:modelValue', event.target.value)
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement | null
+  if (!target) return
+  emit('update:modelValue', target.value)
 }
 
-const handleBlur = (event) => {
+const handleBlur = (event:FocusEvent) => {
   isFocused.value = false
   emit('blur', event)
 }
 
-const handleFocus = (event) => {
+const handleFocus = (event:FocusEvent) => {
   isFocused.value = true
   emit('focus', event)
 }
