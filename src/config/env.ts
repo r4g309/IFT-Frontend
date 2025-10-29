@@ -5,7 +5,7 @@ interface EnvConfig {
 }
 
 export const env: EnvConfig = {
-  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
+  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'backend.ift.dokploy.local',
   isDevelopment: import.meta.env.DEV,
   isProduction: import.meta.env.PROD,
 }
