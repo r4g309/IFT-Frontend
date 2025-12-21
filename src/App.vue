@@ -1,41 +1,19 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import AppFooter from './ui/layout/AppFooter.vue';
-import AppHeader from './ui/layout/AppHeader.vue';
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div id="app">
-    <AppHeader />
+  <div>
+    <!-- class="min-h-screen bg-ink-dots">-->
+    <header>
+      <div>
+        <nav>
+          <!-- <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink> -->
+        </nav>
+      </div>
+    </header>
+
     <RouterView />
-    <AppFooter />
   </div>
 </template>
-
-<style>
-@import '@/assets/cel-shading.css';
-@import '@/assets/themes.css';
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.app-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Transiciones entre páginas */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

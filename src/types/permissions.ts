@@ -88,7 +88,7 @@ export const PERMISSION_GROUPS: Record<PermissionGroup, AppPermission[]> = {
   ],
   [PermissionGroup.ADMIN]: [AppPermission.ADMIN_ALL],
 }
-
+// TODO: Remove thsi helper functions from this file
 // Helper functions
 export const getPermissionsForGroup = (group: PermissionGroup): string[] => {
   return PERMISSION_GROUPS[group].map((p) => p as string)

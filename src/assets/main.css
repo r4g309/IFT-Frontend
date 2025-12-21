@@ -1,1 +1,15 @@
 @import './base.css';
+
+/* @import 'tailwindcss/preflight'; */
+/* @tailwind utilities; */
+
+/* @theme {
+  --ink-black: #050505;
+}
+
+@layer utilities {
+  .bg-ink-dots {
+    background-image: radial-gradient(var(--ink-black) 10%, transparent 11%);
+    background-size: 10px 10px;
+  }
+} */
