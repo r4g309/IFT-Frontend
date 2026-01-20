@@ -13,8 +13,5 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(i18n)
 app.use(router)
-const { bootstrapAuth } = useAuth()
 
-await bootstrapAuth().finally(() => {
-  app.mount('#app')
-})
+app.mount('#app')

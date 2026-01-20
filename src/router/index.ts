@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/LoginView.vue'
-import HomeView from '@/views/HomeView.vue'
 import type { AppPermission } from '@/types/permissions'
 import { useAuthStore } from '@/stores/auth.store'
+import { useAuth } from '@/composables/useAuth'
+import DatabaseView from '@/views/DatabaseView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,13 +16,33 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: DatabaseView,
       meta: { requiresAuth: true },
     },
   ],
 })
 
-router.beforeEach((to, from, next) => {
+let isBootstrapped = false
+let bootstrapPromise: Promise<void> | null = null
+
+async function ensureBootstrapped() {
+  if (isBootstrapped) return
+
+  if (!bootstrapPromise) {
+    bootstrapPromise = (async () => {
+      const { bootstrapAuth } = useAuth()
+      await bootstrapAuth()
+      isBootstrapped = true
+    })()
+  }
+
+  await bootstrapPromise
+}
+
+//  TODO: Remove the console.log
+router.beforeEach(async (to, from, next) => {
+  await ensureBootstrapped()
+
   const authStore = useAuthStore()
   const requiresAuth = to.meta?.requiresAuth
   const permissions = to.meta?.permission as AppPermission[] | undefined
@@ -44,6 +65,7 @@ router.beforeEach((to, from, next) => {
     console.warn(`Acceso denegado: faltan permisos (${permissions.join(', ')})`)
     return next('/')
   }
+
   next()
 })
 

@@ -1,6 +1,21 @@
 {
   "login": {
-    "title": "Iniciar sesión",
-    "button": "Entrar"
+    "title": "Sign in",
+    "email": "Email address",
+    "password": "Password",
+    "emailPlaceholder": "email{'@'}example.com",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "successTitle": "Welcome!",
+    "successMessage": "You have signed in successfully",
+    "error": "Incorrect email or password"
+  },
+  "validation": {
+    "emailRequired": "Email address is required",
+    "emailMin": "Email address is required",
+    "emailInvalid": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 8 characters"
   }
 }

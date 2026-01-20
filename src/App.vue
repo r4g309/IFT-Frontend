@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import 'vue-sonner/style.css'
+import { Toaster } from '@/components/ui/sonner'
+
 </script>
 
 <template>
-  <div>
+  <div class="min-h-screen">
     <!-- class="min-h-screen bg-ink-dots">-->
     <header>
       <div>
@@ -15,5 +18,7 @@ import { RouterLink, RouterView } from 'vue-router'
     </header>
 
     <RouterView />
+    <Toaster />
   </div>
+
 </template>

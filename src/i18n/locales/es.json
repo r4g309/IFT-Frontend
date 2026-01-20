@@ -1,6 +1,21 @@
 {
   "login": {
     "title": "Iniciar sesión",
-    "button": "Entrar"
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "emailPlaceholder": "correo{'@'}ejemplo.com",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Iniciar sesión",
+    "submitting": "Ingresando...",
+    "successTitle": "¡Bienvenido!",
+    "successMessage": "Sesión iniciada correctamente",
+    "error": "Correo o contraseña incorrectos"
+  },
+  "validation": {
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailMin": "El correo electrónico es obligatorio",
+    "emailInvalid": "Correo electrónico inválido",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMin": "La contraseña debe tener al menos 8 caracteres"
   }
 }

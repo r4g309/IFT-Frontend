@@ -1,75 +1,91 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
-
-const email = ref('')
-const password = ref('')
-const loading = ref(false)
-const error = ref<string | null>(null)
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { toast } from 'vue-sonner'
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+import { createLoginSchema } from '@/schemas/auth.schema'
 
 const router = useRouter()
 const { login } = useAuth()
+const { t, locale } = useI18n()
 
-async function onSubmit() {
-  error.value = null
-  loading.value = true
+const formSchema = computed(() => toTypedSchema(createLoginSchema(t)))
 
+const { handleSubmit, isSubmitting } = useForm({
+  validationSchema: formSchema,
+})
+
+const onSubmit = handleSubmit(async ({ email, password }) => {
   try {
-    const user = await login(email.value, password.value)
-    console.log(user)
+    await login(email, password)
     router.replace({ name: 'home' })
   } catch (err) {
-    console.log(err)
-
-    error.value = 'Credenciales inválidas'
-  } finally {
-    loading.value = false
+    toast.error(t('login.error'), {
+      id: 'auth-feedback',
+    })
   }
-}
+})
 </script>
+
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <form
-      @submit.prevent="onSubmit"
-      class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md flex flex-col gap-4"
+  <div
+    class="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 p-4"
+  >
+    <div class="w-full max-w-md">
+      <div class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-bold tracking-tight">IFT DB</h1>
+        </div>
+
+        <form class="space-y-4" @submit="onSubmit">
+          <FormField v-slot="{ componentField }" name="email">
+            <FormItem>
+              <FormLabel>{{ $t('login.email') }}</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  autocomplete="username"
+                  :placeholder="$t('login.emailPlaceholder')"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <FormField v-slot="{ componentField }" name="password">
+            <FormItem>
+              <FormLabel>{{ $t('login.password') }}</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  autocomplete="current-password"
+                  :placeholder="$t('login.passwordPlaceholder')"
+                  v-bind="componentField"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          </FormField>
+
+          <Button type="submit" class="w-full" :disabled="isSubmitting">
+            {{ isSubmitting ? $t('login.submitting') : $t('login.submit') }}
+          </Button>
+        </form>
+      </div>
+    </div>
+
+    <button
+      class="fixed bottom-4 right-4 px-4 py-2 bg-slate-800 text-white rounded-lg text-sm"
+      @click="locale = locale === 'es' ? 'en' : 'es'"
     >
-      <h1 class="text-2xl font-semibold text-center">IFT DB</h1>
-
-      <div class="flex flex-col gap-1">
-        <label for="user_email" class="text-sm font-medium">Email</label>
-        <input
-          id="user_email"
-          type="email"
-          v-model="email"
-          required
-          class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label for="user_password" class="text-sm font-medium">Password</label>
-        <input
-          id="user_password"
-          type="password"
-          v-model="password"
-          minlength="8"
-          required
-          class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <p v-if="error" class="text-sm text-red-600 text-center">
-        {{ error }}
-      </p>
-
-      <button
-        type="submit"
-        :disabled="loading"
-        class="mt-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {{ loading ? 'Ingresando...' : 'Login' }}
-      </button>
-    </form>
+      {{ locale === 'es' ? '🇬🇧 English' : '🇪🇸 Español' }}
+    </button>
   </div>
 </template>
